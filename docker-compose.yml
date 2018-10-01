@@ -44,5 +44,5 @@ services:
     ports:
       - "8070:8070"
       - "8071:8071"
-    image: cmyanko/my-iq-server:1.51.0
+    image: cmyanko/my-iq-server:1.52.0
 

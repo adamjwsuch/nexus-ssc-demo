@@ -5,11 +5,11 @@
 # Directory for data files.
 sonatypeWork: /sonatype-work
 
-# Base URL of the Sonatype CLM server for user facing links back to the server.
-baseUrl: https://iq-server.mycompany.com
+# Path to a license file to automatically install if unlicensed.
+#licenseFile: ./license.lic
 
-# Confirm you have read the upgrade instructions and come prepared
-#consentToUpgradeToVersion_1_45: true
+# Base URL of the Sonatype CLM server for user facing links back to the server.
+#baseUrl: http://localhost:8070/
 
 # Hour of the day(0-23) to schedule Policy Monitoring execution. The default is midnight.
 #policyMonitoringHour: 0
@@ -81,28 +81,28 @@ server:
 
 # Notification mail settings.
 # If enabled, ensure that the baseUrl configuration setting is also enabled and correct, because generated emails often contain links to the server.
-mail:
+#mail:
 
   # The host running the SMTP server to use. 
-  hostname: "smtp.mailtrap.io"
+  #hostname: "127.0.0.1"
 
   # The port at which the SMTP server listens on. 
-  port: 465
+  #port: 587
 
   # The address used as From for outgoing notification mails sent by the server.
-  systemEmail: "SonatypeCLM@localhost"
+  #systemEmail: "SonatypeCLM@localhost"
 
   # The username used to access the mail server.
-  username: "200258239c92a3"
+  #username: "anonymous"
 
   # The password used to access the mail server.
-  password: "8ac2860b581732"
+  #password: "guest"
   
   # Connect using SSL.
   #ssl: true
   
   # Connect using TLS.
-  tls: true
+  #tls: true
 
 # Notification JIRA settings.
 # Note that any user of the Nexus IQ Server will have access to see all projects and applicable issue types available
@@ -172,7 +172,7 @@ logging:
   # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: DEBUG
 
-  # Logger-specific levels.
+  # Logger-specific settings.
   loggers:
     "com.sonatype.insight.scan": INFO
     "eu.medsea.mimeutil.MimeUtil2": INFO
@@ -181,6 +181,19 @@ logging:
     "org.eclipse.birt.report.engine.layout.pdf.font.FontConfigReader": WARN
     "org.eclipse.jetty": INFO
     "org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter": INFO   # WARNING: This reveals credentials at DEBUG level
+    "com.sonatype.insight.audit":
+      appenders:
+      - type: file
+        # The file to which audit statements will be logged.
+        currentLogFilename: ./log/audit.log
+        # When the audit log file rotates, the archived audit log will be renamed to this and gzipped. The
+        # %d is replaced with the previous day (yyyy-MM-dd). Custom rolling windows can be created
+        # by passing a SimpleDateFormat-compatible format as an argument: "%d{yyyy-MM-dd-hh}".
+        #
+        # If archive is true, this must be specified.
+        archivedLogFilenamePattern: ./log/audit-%d.log.gz
+        # The number of archived audit log files to keep.
+        archivedFileCount: 50
 
   appenders:
   
