@@ -13,6 +13,6 @@ Built and tested against 18.10
 TODO: Would like to fget the ssc.autoconf working to avaoid the setup wizard.
 
 # Running
-"""
+```
 docker-compose up -d
-"""
+```
