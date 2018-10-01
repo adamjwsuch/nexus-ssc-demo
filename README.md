@@ -16,3 +16,6 @@ TODO: Would like to fget the ssc.autoconf working to avaoid the setup wizard.
 ```
 docker-compose up -d
 ```
+
+Navigate to http://localhost:8888/ssc to go through the setup wizard (all values are in the ssc.autoconf file)
+The License is pre-installed and just needs to be accepted.
