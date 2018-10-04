@@ -34,8 +34,18 @@ services:
     volumes:
       - ~/.fortify_home:/usr/local/tomcat/fortify
     image: cmyanko/ssc:18.10
-    links:
-      - mysql
+
+  intSvc:
+    build: ./intSvc
+    depends_on:
+      - ssc
+      - iq-server
+    ports:
+      - "8182:8080"
+    volumes:
+      - ~/.intSvcWorkFolder:/usr/local/sonatype/work/
+    image: cmyanko/nexus-ssc-integration:1.0
+  
 
   iq-server:
     build: ./iq-server
