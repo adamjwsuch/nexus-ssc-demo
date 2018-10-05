@@ -1,0 +1,3 @@
+appProperties: {host.validation: false, host.url: 'http://localhost:8888/ssc', searchIndex.location: '/usr/local/tomcat/fortify/ssc/ssc_search_index'}
+datasourceProperties: {db.driver.class: com.mysql.jdbc.Driver, db.username: ssc_admin, db.password: ssc_password, db.dialect: com.fortify.manager.util.hibernate.MySQLDialect, db.like.specialCharacters: '%_\\', jdbc.url: 'jdbc:mysql://mysql:3306/ssc_db?connectionCollation=latin1_general_cs&rewriteBatchedStatements=true'}
+seeds: ['/usr/local/tomcat/fortify/Fortify_Report_Seed_Bundle-2018_Q1.zip','/usr/local/tomcat/fortify/Fortify_Process_Seed_Bundle-2018_Q1.zip','/usr/local/tomcat/fortify/Fortify_PCI_Basic_Seed_Bundle-2018_Q1.zip',]
