@@ -1,28 +1,20 @@
-FROM tomcat:8.5
+FROM openjdk:8-jre-slim
 
-# args; expected that there be a directory named files that contains:
-# 
-#	- SonatypeFortifyIntegration.war
+ARG intsvc_version=1.0.0-SNAPSHOT
 
-ARG MY_FILES_DIR=files
-ARG TMP_DIR=/root/mytemp
-ARG TOMCAT_DIR=/usr/local/tomcat
-ARG SONATYPE_WORK=/usr/local/sonatype/work/
+RUN useradd --home-dir /home/nexus --create-home -U nexus
 
-# fortify ssc home dir (log/conf locations default=/root/.fortify/ssc)
-# keep it with TOMCAT_HOME in its own ssc directory struture
-#ENV JAVA_OPTS="$JAVA_OPTS -Dfortify.home=$FORTIFY_HOME"
+RUN apt-get update; apt-get install curl -y
 
-# create temp dir for needed files
-RUN mkdir $TMP_DIR/
-COPY $MY_FILES_DIR/* $TMP_DIR/
+ENV PATH "$PATH:/home/nexus"
 
-# clear out "default" apps that tomcat includes
-# put intSvc war in webapps dir for deployment
-# create sonatype work folder
-RUN rm -rf $TOMCAT_DIR/webapps/* && \
-	mkdir -p $SONATYPE_WORK && \
-	mv $TMP_DIR/SonatypeFortifyIntegration.war $TOMCAT_DIR/webapps
+COPY files/start.sh /home/nexus/start.sh
+RUN chmod +x /home/nexus/start.sh
 
-# cleanup temp dir
-RUN rm -rf $TMP_DIR
+USER nexus
+RUN cd /home/nexus/; mkdir -p .work
+COPY --chown=nexus:nexus files/iqapplication.properties /home/nexus/iqapplication.properties
+COPY --chown=nexus:nexus files/mapping.json /home/nexus/mapping.json
+COPY --chown=nexus:nexus files/SonatypeFortifyIntegration.jar /home/nexus/intsvc.jar
+
+ENTRYPOINT ["/home/nexus/start.sh"]

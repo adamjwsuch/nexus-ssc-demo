@@ -1,0 +1,32 @@
+[
+    {
+      "sonaTypeProject": "petclinic",
+      "sonaTypeProjectStage": "release",
+      "fortifyApplication": "PetClinic",
+      "fortifyApplicationVersion": "1.0"
+    },
+    {
+      "sonaTypeProject": "petclinic",
+      "sonaTypeProjectStage": "build",
+      "fortifyApplication": "PetClinic",
+      "fortifyApplicationVersion": "2.0"
+    },
+    {
+      "sonaTypeProject": "struts-showcase",
+      "sonaTypeProjectStage": "stage-release",
+      "fortifyApplication": "Struts Showcase",
+      "fortifyApplicationVersion": "1.0"
+    },
+    {
+      "sonaTypeProject": "webgoat8",
+      "sonaTypeProjectStage": "release",
+      "fortifyApplication": "Webgoat8",
+      "fortifyApplicationVersion": "1.0"
+    },
+    {
+      "sonaTypeProject": "Snyk",
+      "sonaTypeProjectStage": "release",
+      "fortifyApplication": "Snyk Goof",
+      "fortifyApplicationVersion": "1.0"
+    }
+]

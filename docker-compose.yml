@@ -41,9 +41,9 @@ services:
       - ssc
       - iq-server
     ports:
-      - "8182:8080"
+      - "8182:8182"
     volumes:
-      - ~/.intSvcWorkFolder:/usr/local/sonatype/work/
+      - ~/.intSvcWorkFolder:/home/nexus/.work
     image: cmyanko/nexus-ssc-integration:1.0
   
 
