@@ -4,7 +4,7 @@ Fortify Software Security Center war
 # Built for 18.10
 use the ssc.autoconfig file to deploy a preconfigured ssc.war to your container
 
-You need to put a copy of the ssc.war file and your license file in here
+You need to put a copy of the ssc.war file in 'files' and your license in fortify home
 
 SSC persist it's config locally inaddition to data saved in the DB
 Pt your license file in the fortify_home folder outside of this project space
