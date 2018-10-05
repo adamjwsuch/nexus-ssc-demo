@@ -13,6 +13,9 @@ Image specifically designed to be used with SSC. Auto creates an empty DB and ru
 # Fortify SSC
 Built and tested against 18.10. You need to put the WAR file in ssc_master/files
 
+# IntSvc
+Springboot JAR in an openJRE container that does the work here.
+
 TODO: Would like to fget the ssc.autoconf working to avaoid the setup wizard.
 
 # Running
@@ -20,36 +23,19 @@ TODO: Would like to fget the ssc.autoconf working to avaoid the setup wizard.
 docker-compose up -d
 ```
 
-Navigate to http://localhost:8888/ssc to go through the setup wizard (all values are in the ssc.autoconf file)
-The init.token file will be in $FORTIFY_HOME/ssc
-
-The License is pre-installed and just needs to be accepted.
-
-Set the URL to http://localhost:8888/ssc
-
-The super user for the DB is ssc_admin and the password is ssc_password (see docker compose in the MYSQL section)
-
-The DB tuest connection string is
-jdbc:mysql://mysql:3306/ssc_db?connectionCollation=latin1_general_cs&rewriteBatchedStatements=true
-
-Test the connection!
-
-Seed data
-I seeded these three files that came in the SSC download bundle
-
-Fortify_Report_Seed_Bundle-2018_Q1.zip: 
-Fortify_Process_Seed_Bundle-2018_Q1.zip: 
-Fortify_PCI_Basic_Seed_Bundle-2018_Q1.zip: 
-
-Finished Setup Wizard!
-
-Now run the following to restart the environment:
+let the db fully initialize. It will restart itself after the create tables script run. Now stop everything.
 ```
 docker-compose down
+```
+Look in the fortify home folder you created for a pv and remove the ssc folder that was created. Copy in all of the files from ssc-master/fortify_home and then restart the environment. 
+```
 docker-compose up -d
 ```
-Navigate to http://localhost:8888/ssc
+This should auto configure and apply the seed data. Now when you hit http:/localhost:8888/ssc you will be presented with a login screen. Use the default creds admin/admin and you will then need to set up a new password. You can also go into the Administration section and install the parser plugin. Be sure to 'enable' it as well.
+Stop the environment again
 
-Use the default pusername and password to get in (not the same as the super user for the DB. You'll need to change the password and then re-login.
+Use this password to update the iqapplcation.properties in the intSvc. Remove the original image from your registry and restart the environment. This will re-build the intSvc image with your updated properties
 
 You now have a running SSC instance with a MYSQL back end and persistence in place to survive tear down and re starts.
+
+From now on you just have to start and stop the environment.
