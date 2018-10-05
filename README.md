@@ -14,9 +14,9 @@ Image specifically designed to be used with SSC. Auto creates an empty DB and ru
 Built and tested against 18.10. You need to put the WAR file in ssc_master/files
 
 # IntSvc
-Springboot JAR in an openJRE container that does the work here.
+Springboot JAR in an openJRE container that does the work here. http://localhost:8182/startScanLoad to trigger a run.
 
-TODO: Would like to fget the ssc.autoconf working to avaoid the setup wizard.
+
 
 # Running
 ```
