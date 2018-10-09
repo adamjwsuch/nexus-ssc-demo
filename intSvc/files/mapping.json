@@ -22,11 +22,5 @@
       "sonaTypeProjectStage": "release",
       "fortifyApplication": "Webgoat8",
       "fortifyApplicationVersion": "1.0"
-    },
-    {
-      "sonaTypeProject": "Snyk",
-      "sonaTypeProjectStage": "release",
-      "fortifyApplication": "Snyk Goof",
-      "fortifyApplicationVersion": "1.0"
     }
 ]
