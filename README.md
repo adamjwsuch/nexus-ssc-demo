@@ -19,6 +19,15 @@ Springboot JAR in an openJRE container that does the work here. http://localhost
 
 
 # Running
+
+Each container makes use of a persistent volume. Just running the docker-compose file will create them but I reccomend making them for yourself and pre-populating them with the files needed.
+
+~/.mysql
+~/.fortify_home   <-- ssc does persist a few things on it's side
+~/.intSvcWorkFolder   <-- this is where JSON files will get created prior to being uploaded to SSC
+~/iq-data           <--- this is for IQ
+
+
 ```
 docker-compose up -d
 ```
@@ -27,7 +36,7 @@ let the db fully initialize. It will restart itself after the create tables scri
 ```
 docker-compose down
 ```
-Look in the fortify home folder you created for a pv and remove the ssc folder that was created. Copy in all of the files from ssc-master/fortify_home and then restart the environment. 
+Look in the fortify home folder you created for a pv and remove the ssc folder that was created. Copy in all of the files from ssc-master/fortify_home except for the readme and then restart the environment. This now support the auto-config process for SSC.
 ```
 docker-compose up -d
 ```
