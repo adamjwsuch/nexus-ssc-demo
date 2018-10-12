@@ -36,7 +36,7 @@ let the db fully initialize. It will restart itself after the create tables scri
 ```
 docker-compose down
 ```
-Look in the fortify home folder you created for a pv and remove the ssc folder that was created. Copy in all of the files from ssc-master/fortify_home and then restart the environment. This now support the auto-config process for SSC.
+Look in the fortify home folder you created for a pv and remove the ssc folder that was created. Copy in all of the files from ssc-master/fortify_home except for the readme and then restart the environment. This now support the auto-config process for SSC.
 ```
 docker-compose up -d
 ```
