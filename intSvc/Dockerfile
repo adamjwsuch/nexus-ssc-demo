@@ -1,7 +1,5 @@
 FROM openjdk:8-jre-slim
 
-ARG intsvc_version=1.0.0-SNAPSHOT
-
 RUN useradd --home-dir /home/nexus --create-home -U nexus
 
 RUN apt-get update; apt-get install curl -y
