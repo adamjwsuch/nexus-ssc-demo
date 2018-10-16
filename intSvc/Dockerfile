@@ -13,6 +13,6 @@ USER nexus
 RUN cd /home/nexus/; mkdir -p .work
 COPY --chown=nexus:nexus files/iqapplication.properties /home/nexus/iqapplication.properties
 COPY --chown=nexus:nexus files/mapping.json /home/nexus/mapping.json
-COPY --chown=nexus:nexus files/SonatypeFortifyIntegration.jar /home/nexus/intsvc.jar
+COPY --chown=nexus:nexus files/SonatypeFortifyIntegration*.jar /home/nexus/intsvc.jar
 
 ENTRYPOINT ["/home/nexus/start.sh"]
