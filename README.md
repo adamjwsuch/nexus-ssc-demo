@@ -22,11 +22,12 @@ Springboot JAR in an openJRE container that does the work here. http://localhost
 
 Each container makes use of a persistent volume. Just running the docker-compose file will create them but I reccomend making them for yourself and pre-populating them with the files needed.
 
+```
 ~/.mysql
 ~/.fortify_home   <-- ssc does persist a few things on it's side
 ~/.intSvcWorkFolder   <-- this is where JSON files will get created prior to being uploaded to SSC
 ~/iq-data           <--- this is for IQ
-
+'''
 
 ```
 docker-compose up -d
