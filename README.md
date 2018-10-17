@@ -27,17 +27,21 @@ Each container makes use of a persistent volume. Just running the docker-compose
 ~/.fortify_home   <-- ssc does persist a few things on it's side
 ~/.intSvcWorkFolder   <-- this is where JSON files will get created prior to being uploaded to SSC
 ~/iq-data           <--- this is for IQ
-'''
+```
+
+Now lets get started!
 
 ```
 docker-compose up -d
 ```
 
-let the db fully initialize. It will restart itself after the create tables script run. Now stop everything.
+...let the db fully initialize. You can use docker logs <container_name> or my preference, Kitematic to see the logs. Be patient, this takes a few minutes. It will restart itself after the create tables script run. Now stop everything.
+
 ```
 docker-compose down
 ```
-Look in the fortify home folder you created for a pv and remove the ssc folder that was created. Copy in all of the files from ssc-master/fortify_home except for the readme and then restart the environment. This now support the auto-config process for SSC.
+Look in the fortify home folder you created for a pv and remove the ssc folder that was created. Copy in all of the files from ssc-master/fortify_home except for the readme and then restart the environment.
+
 ```
 docker-compose up -d
 ```
