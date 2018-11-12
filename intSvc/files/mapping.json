@@ -1,24 +1,24 @@
 [
     {
-      "sonaTypeProject": "petclinic",
-      "sonaTypeProjectStage": "release",
+      "sonatypeProject": "petclinic",
+      "sonatypeProjectStage": "release",
       "fortifyApplication": "PetClinic",
       "fortifyApplicationVersion": "1.0"
     },
     {
-      "sonaTypeProject": "petclinic",
+      "sonatypeProject": "petclinic",
       "sonaTypeProjectStage": "build",
       "fortifyApplication": "PetClinic",
       "fortifyApplicationVersion": "2.0"
     },
     {
-      "sonaTypeProject": "struts-showcase",
-      "sonaTypeProjectStage": "stage-release",
+      "sonatypeProject": "struts-showcase",
+      "sonatypeProjectStage": "stage-release",
       "fortifyApplication": "Struts Showcase",
       "fortifyApplicationVersion": "1.0"
     },
     {
-      "sonaTypeProject": "webgoat8",
+      "sonatypeProject": "webgoat8",
       "sonaTypeProjectStage": "release",
       "fortifyApplication": "Webgoat8",
       "fortifyApplicationVersion": "1.0"
