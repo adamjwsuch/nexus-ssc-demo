@@ -7,7 +7,7 @@
     },
     {
       "sonatypeProject": "petclinic",
-      "sonaTypeProjectStage": "build",
+      "sonatypeProjectStage": "build",
       "fortifyApplication": "PetClinic",
       "fortifyApplicationVersion": "2.0"
     },
@@ -19,7 +19,7 @@
     },
     {
       "sonatypeProject": "webgoat8",
-      "sonaTypeProjectStage": "release",
+      "sonatypeProjectStage": "build",
       "fortifyApplication": "Webgoat8",
       "fortifyApplicationVersion": "1.0"
     }
