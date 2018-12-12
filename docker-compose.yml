@@ -57,6 +57,7 @@ services:
     image: cmyanko/my-iq-server:1.55.0
 
   nginx-proxy:
+    build: ./nginx
     image: cmyanko/sonatype_nginx-proxy:2.4
     ports:
       - '443:443'
