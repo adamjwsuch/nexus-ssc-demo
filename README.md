@@ -35,7 +35,7 @@ Now lets get started!
 docker-compose up -d
 ```
 
-...let the db fully initialize. You can use docker logs <container_name> or my preference, Kitematic to see the logs. Be patient, this takes a few minutes. It will restart itself after the create tables script run. Now stop everything.
+...let the db fully initialize. You can use docker logs <container_name> or my preference, Kitematic to see the logs. Be patient, this takes a few minutes. It will restart itself after the create tables script run. Now stop everything. If you also looked at the SSC logs it is probably going to fail because the db wasn't ready.
 
 ```
 docker-compose down
