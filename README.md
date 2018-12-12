@@ -14,7 +14,7 @@ Image specifically designed to be used with SSC. Auto creates an empty DB and ru
 Built and tested against 18.10 and 18.20. ***You need to put the ssc.war and License files in ssc_master/files***
 
 # IntSvc
-Springboot JAR in an openJRE container that does the work here. http://localhost:8182/startScanLoad to trigger a run.
+Springboot JAR in an openJRE container that does the work here. http://localhost:8182/startScanLoad to trigger a run. Be sure to set the mapping.json file to point to project/phase that exist in IQ. You can make up new project/versions for SSC as they will be created if they don't exist.
 
 
 
