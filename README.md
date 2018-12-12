@@ -11,7 +11,7 @@ You must have a valid license to run the IQ server and you'll want to have some 
 Image specifically designed to be used with SSC. Auto creates an empty DB and run's the create tables script on it as well as creating the super user for that DB.
 
 # Fortify SSC
-Built and tested against 18.10. ***You need to put the ssc.war and License files in ssc_master/files***
+Built and tested against 18.10 and 18.20. ***You need to put the ssc.war and License files in ssc_master/files***
 
 # IntSvc
 Springboot JAR in an openJRE container that does the work here. http://localhost:8182/startScanLoad to trigger a run.
