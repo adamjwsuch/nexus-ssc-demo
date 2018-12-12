@@ -4,8 +4,8 @@ Refernce platform implimentation to facilitate development and testing effort. A
 
 Demonstrate the itegration between Nexus IQ and Fortify SSC
 
-# IQ Server 52
-You must have a valid license to run the IQ server and you'll want to have some scanned apps to test/demo the functionality of moving data from IQ to SSC
+# IQ Server 52+
+You must have a valid license to run the IQ server and you'll want to have some scanned apps to test/demo the functionality of moving data from IQ to SSC. We began testing with IQ 52 but have been updating the project with each new release since then.
 
 # MYSQL
 Image specifically designed to be used with SSC. Auto creates an empty DB and run's the create tables script on it as well as creating the super user for that DB.
