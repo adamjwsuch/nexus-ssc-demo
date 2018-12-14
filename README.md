@@ -12,6 +12,7 @@ Image specifically designed to be used with SSC. Auto creates an empty DB and ru
 
 # Fortify SSC
 Built and tested against 18.10 and 18.20. ***You need to put the ssc.war and License files in ssc_master/files***
+Once up you can hit http://localhost:8888/ssc  (please note that within the docker network it is accessed by it's service name and internal port http://ssc:8080/ssc as reflected in the iqapplication.properties file for the integration service)
 
 # IntSvc
 Springboot JAR in an openJRE container that does the work here. http://localhost:8182/startScanLoad to trigger a run. Be sure to set the mapping.json file to point to project/phase that exist in IQ. You can make up new project/versions for SSC as they will be created if they don't exist.
