@@ -1,6 +1,6 @@
 # nexus-ssc-demo
 
-Refernce platform implimentation to facilitate development and testing effort. Also can be used for demo's and as a reference implimentation.
+Reference platform implimentation to facilitate development and testing effort. Also can be used for demo's and as a reference implimentation.
 
 Demonstrate the itegration between Nexus IQ and Fortify SSC
 
