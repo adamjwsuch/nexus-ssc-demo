@@ -28,7 +28,7 @@ RUN rm -rf $TOMCAT_DIR/webapps/* && \
 	mkdir -p $FORTIFY_HOME && \
 	mv $TMP_DIR/ssc.war $TOMCAT_DIR/webapps && \
 	mv $TMP_DIR/$MYSQL_JAR $TOMCAT_DIR/lib
-	# mv $TMP_DIR/$SSC_CONFIG $FORTIFY_HOME
+
 
 # cleanup temp dir
 RUN rm -rf $TMP_DIR

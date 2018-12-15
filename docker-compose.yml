@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-version: '3.1'
+version: '3'
 
 services:
   mysql:
@@ -34,8 +34,18 @@ services:
     volumes:
       - ~/.fortify_home:/usr/local/tomcat/fortify
     image: cmyanko/ssc:18.10
-    links:
-      - mysql
+
+  intSvc:
+    build: ./intSvc
+    depends_on:
+      - ssc
+      - iq-server
+    ports:
+      - "8182:8182"
+    volumes:
+      - ~/.intSvcWorkFolder:/home/nexus/.work
+    image: cmyanko/nexus-ssc-integration:18.0.2
+  
 
   iq-server:
     build: ./iq-server
@@ -44,5 +54,22 @@ services:
     ports:
       - "8070:8070"
       - "8071:8071"
-    image: cmyanko/my-iq-server:1.52.0
+    image: cmyanko/my-iq-server:1.55.0
 
+  nginx-proxy:
+    build: ./nginx
+    image: cmyanko/sonatype_nginx-proxy:2.4
+    ports:
+      - '443:443'
+      - '5000:5000'
+      - '8011:8011'
+      - '18443:18443'
+    command: [ nginx, '-g', 'daemon off;' ]
+
+  nexus:
+    #build: nexus
+    volumes:
+      - ~/nexus-data:/nexus-data
+    ports:
+      - "8081:8081"
+    image: sonatype/nexus3:3.14.0
