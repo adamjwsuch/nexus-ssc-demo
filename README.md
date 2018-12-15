@@ -1,8 +1,8 @@
 # nexus-ssc-demo
 
-Reference platform implimentation to facilitate development and testing effort. Also can be used for demo's and as a reference implimentation.
+Reference platform implementation to facilitate development and testing effort. Also can be used for demo's and as a reference implementation.
 
-Demonstrate the itegration between Nexus IQ and Fortify SSC
+Demonstrate the integration between Nexus IQ and Fortify SSC
 
 # IQ Server 52+
 You must have a valid license to run the IQ server and you'll want to have some scanned apps to test/demo the functionality of moving data from IQ to SSC. We began testing with IQ 52 but have been updating the project with each new release since then.
@@ -21,7 +21,7 @@ Springboot JAR in an openJRE container that does the work here. http://localhost
 
 # Running
 
-Each container makes use of a persistent volume. Just running the docker-compose file will create them but I reccomend making them for yourself and pre-populating them with the files needed.
+Each container makes use of a persistent volume. Just running the docker-compose file will create them but I recommend making them for yourself and pre-populating them with the files needed.
 
 ```
 ~/.mysql
