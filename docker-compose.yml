@@ -54,7 +54,7 @@ services:
     ports:
       - "8070:8070"
       - "8071:8071"
-    image: cmyanko/my-iq-server:1.55.0
+    image: cmyanko/my-iq-server:1.58.0
 
   nginx-proxy:
     build: ./nginx
