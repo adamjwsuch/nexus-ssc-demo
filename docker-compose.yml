@@ -33,7 +33,7 @@ services:
       - "8888:8080"
     volumes:
       - ~/.fortify_home:/usr/local/tomcat/fortify
-    image: cmyanko/ssc:18.10
+    image: cmyanko/ssc:18.20
 
   intSvc:
     build: ./intSvc
