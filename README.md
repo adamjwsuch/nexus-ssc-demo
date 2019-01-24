@@ -41,7 +41,7 @@ docker-compose up -d
 ```
 docker-compose down
 ```
-Look in the fortify home folder you created for a pv (the default value is for ~/.intSvcWorkFolder) and remove the ssc folder that was created on the failed startup. Copy in all of the files from ssc-master/fortify_home except for the readme and then restart the environment.This will force SSC to start over with it's initial auto-configuration.
+Look in the fortify home folder you created for a pv (the default value is for ~/.fortify_home) and remove the ssc folder that was created on the failed startup. Copy in all of the files from ssc-master/fortify_home except for the readme and then restart the environment.This will force SSC to start over with it's initial auto-configuration.
 
 ```
 docker-compose up -d
