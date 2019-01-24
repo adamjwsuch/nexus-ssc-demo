@@ -1,75 +1,83 @@
-# Copyright (c) 2017-present Sonatype, Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 version: '3'
-
 services:
   mysql:
     build: ./mysql
-    image: cmyanko/mysql:5.7
-    command: --default-authentication-plugin=mysql_native_password
+    image: 'cmyanko/mysql:5.7'
+    command: '--default-authentication-plugin=mysql_native_password'
     restart: always
     volumes:
-       - ~/.mysql:/var/lib/mysql
+      - '~/.mysql:/var/lib/mysql'
     environment:
       MYSQL_ROOT_PASSWORD: example
-
   ssc:
     build: ./ssc-master
     depends_on:
       - mysql
     ports:
-      - "8888:8080"
+      - '8888:8080'
     volumes:
-      - ~/.fortify_home:/usr/local/tomcat/fortify
-    image: cmyanko/ssc:18.20
-
+      - '~/.fortify_home:/usr/local/tomcat/fortify'
+    image: 'cmyanko/ssc:18.10'
   intSvc:
     build: ./intSvc
     depends_on:
       - ssc
       - iq-server
     ports:
-      - "8182:8182"
+      - '8182:8182'
     volumes:
-      - ~/.intSvcWorkFolder:/home/nexus/.work
-    image: cmyanko/nexus-ssc-integration:18.0.2
-  
-
+      - '~/.intSvcWorkFolder:/home/nexus/.work'
+    image: 'cmyanko/nexus-ssc-integration:18.0.2'
   iq-server:
     build: ./iq-server
     volumes:
-      - ~/iq-data:/sonatype-work
+      - '~/iq-data:/sonatype-work'
     ports:
-      - "8070:8070"
-      - "8071:8071"
-    image: cmyanko/my-iq-server:1.58.0
-
+      - '8070:8070'
+      - '8071:8071'
+    image: 'cmyanko/my-iq-server:1.58.0'
   nginx-proxy:
     build: ./nginx
-    image: cmyanko/sonatype_nginx-proxy:2.4
+    image: 'cmyanko/sonatype_nginx-proxy:2.4'
     ports:
       - '443:443'
       - '5000:5000'
       - '8011:8011'
       - '18443:18443'
-    command: [ nginx, '-g', 'daemon off;' ]
-
+    command:
+      - nginx
+      - '-g'
+      - daemon off;
   nexus:
-    #build: nexus
+    image: 'cmyanko/nexus3:3.15.1'
+    build: ./nexus
     volumes:
-      - ~/nexus-data:/nexus-data
+      - '~/nexus-data:/nexus-data'
     ports:
-      - "8081:8081"
-    image: sonatype/nexus3:3.14.0
+      - '8081:8081'
+  jenkins:
+    image: jenkinsci/blueocean
+    user: root
+    volumes:
+      - '~/.jenkins:/var/jenkins_home'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+  listener:
+    image: my-webhook-listener:1.0.0
+    build: ./listener
+    volumes:
+      - /usr/local/bin/docker:/usr/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "9000:9000"
+    command:
+      - -verbose 
+      - -hotreload
+      - -hooks=/etc/webhook/test.json
+      - -hooks=/etc/webhook/dockerHub-scan.json
+      - -hooks=/etc/webhook/nxrm-consume.json
+      - -hooks=/etc/webhook/iq-consume.json
+    links:
+      - iq-server 
