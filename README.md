@@ -33,7 +33,7 @@ Each container makes use of a persistent volume. Just running the docker-compose
 Now lets get started!
 
 ```
-docker-compose up -d
+docker-compose up -d mysql
 ```
 
 ...let the db fully initialize. You can use docker logs <container_name> or my preference, Kitematic to see the logs. Be patient, this takes a few minutes. It will restart itself after the create tables script run. Now stop everything. If you also looked at the SSC logs it is probably going to fail because the db wasn't ready.
