@@ -35,7 +35,7 @@ services:
     ports:
       - '8070:8070'
       - '8071:8071'
-    image: 'cmyanko/my-iq-server:1.58.0'
+    image: 'cmyanko/my-iq-server:1.59.0'
   nginx-proxy:
     build: ./nginx
     image: 'cmyanko/sonatype_nginx-proxy:2.4'
@@ -64,20 +64,3 @@ services:
     ports:
       - '8080:8080'
       - '50000:50000'
-  listener:
-    image: my-webhook-listener:1.0.0
-    build: ./listener
-    volumes:
-      - /usr/local/bin/docker:/usr/bin/docker
-      - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - "9000:9000"
-    command:
-      - -verbose 
-      - -hotreload
-      - -hooks=/etc/webhook/test.json
-      - -hooks=/etc/webhook/dockerHub-scan.json
-      - -hooks=/etc/webhook/nxrm-consume.json
-      - -hooks=/etc/webhook/iq-consume.json
-    links:
-      - iq-server 
