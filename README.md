@@ -36,21 +36,28 @@ Now lets get started!
 docker-compose up -d mysql
 ```
 
-...let the db fully initialize. You can use docker logs <container_name> or my preference, Kitematic to see the logs. Be patient, this takes a few minutes. It will restart itself after the create tables script run. Now stop everything. If you also looked at the SSC logs it is probably going to fail because the db wasn't ready.
+...let the db fully initialize. You can use docker logs <container_name> or my preference, Kitematic to see the logs. Be patient, this takes a few minutes. It will restart itself after the create tables script run.
+Create the fortify home folder then copy in all of the files from ssc-master/fortify_home except for the readme and also add the fortify license then start the SSC container. Now that the dartabase is at the ready, the SSC app can start properly.
 
 ```
-docker-compose down
-```
-Look in the fortify home folder you created for a pv (the default value is for ~/.fortify_home) and remove the ssc folder that was created on the failed startup. Copy in all of the files from ssc-master/fortify_home except for the readme and then restart the environment.This will force SSC to start over with it's initial auto-configuration.
-
-```
-docker-compose up -d
+docker-compose up -d ssc
 ```
 This should auto configure and apply the seed data. Now when you hit http:/localhost:8888/ssc you will be presented with a login screen. Use the default creds admin/admin and you will then need to set up a new password. You can also go into the Administration section and install the parser plugin. Be sure to 'enable' it as well.
 Stop the environment again
 
-Use this password to update the iqapplcation.properties in the intSvc. Remove the original image from your registry and restart the environment. This will re-build the intSvc image with your updated properties
+Use this password to update the iqapplcation.properties in the intSvc. Now we can start the rest of the environment
+
+```
+docker-compose up -d
+```
 
 You now have a running SSC instance with a MYSQL back end and persistence in place to survive tear down and re starts.
 
-From now on you just have to start and stop the environment.
+To stop everything, use
+```
+docker-compose down
+```
+from now on you can just start it all together
+```
+docker-compose up -d
+```
