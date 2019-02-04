@@ -9,7 +9,9 @@ services:
       - '~/.mysql:/var/lib/mysql'
     environment:
       MYSQL_ROOT_PASSWORD: example
+
   ssc:
+    image: 'cmyanko/ssc:18.10'
     build: ./ssc-master
     depends_on:
       - mysql
@@ -17,7 +19,16 @@ services:
       - '8888:8080'
     volumes:
       - '~/.fortify_home:/usr/local/tomcat/fortify'
-    image: 'cmyanko/ssc:18.10'
+
+  iq-server:
+    image: 'cmyanko/my-iq-server:1.59.0'
+    build: ./iq-server
+    volumes:
+      - '~/iq-data:/sonatype-work'
+    ports:
+      - '8070:8070'
+      - '8071:8071'
+
   intSvc:
     build: ./intSvc
     depends_on:
@@ -27,15 +38,8 @@ services:
       - '8182:8182'
     volumes:
       - '~/.intSvcWorkFolder:/home/nexus/.work'
-    image: 'cmyanko/nexus-ssc-integration:18.0.2'
-  iq-server:
-    build: ./iq-server
-    volumes:
-      - '~/iq-data:/sonatype-work'
-    ports:
-      - '8070:8070'
-      - '8071:8071'
-    image: 'cmyanko/my-iq-server:1.59.0'
+    image: 'cmyanko/nexus-ssc-integration:18.0.4'
+
   nginx-proxy:
     build: ./nginx
     image: 'cmyanko/sonatype_nginx-proxy:2.4'
@@ -48,6 +52,7 @@ services:
       - nginx
       - '-g'
       - daemon off;
+
   nexus:
     image: 'cmyanko/nexus3:3.15.1'
     build: ./nexus
@@ -55,6 +60,7 @@ services:
       - '~/nexus-data:/nexus-data'
     ports:
       - '8081:8081'
+
   jenkins:
     image: jenkinsci/blueocean
     user: root
