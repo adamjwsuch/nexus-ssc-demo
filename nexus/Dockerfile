@@ -1,4 +1,4 @@
-FROM       sonatype/nexus3:3.15.1
+FROM       sonatype/nexus3:3.15.2
 
 LABEL maintainer="Curtis Yanko<cyanko+docker@sonatype.com>"
 USER root
