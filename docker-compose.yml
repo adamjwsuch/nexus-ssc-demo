@@ -25,6 +25,7 @@ services:
     build: ./iq-server
     volumes:
       - '~/iq-data:/sonatype-work'
+      - '~/iq-logs:/opt/sonatype/nexus-iq-server/log'
     ports:
       - '8070:8070'
       - '8071:8071'
