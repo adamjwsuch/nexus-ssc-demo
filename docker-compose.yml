@@ -21,7 +21,7 @@ services:
       - '~/.fortify_home:/usr/local/tomcat/fortify'
 
   iq-server:
-    image: 'cmyanko/my-iq-server:1.59.0'
+    image: 'cmyanko/my-iq-server:1.60.0'
     build: ./iq-server
     volumes:
       - '~/iq-data:/sonatype-work'
