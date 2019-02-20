@@ -62,12 +62,47 @@ services:
     ports:
       - '8081:8081'
 
-  jenkins:
-    image: jenkinsci/blueocean
-    user: root
-    volumes:
-      - '~/.jenkins:/var/jenkins_home'
-      - '/var/run/docker.sock:/var/run/docker.sock'
-    ports:
-      - '8080:8080'
-      - '50000:50000'
+# Moved to a local install to take advantage of the SSL in nginx fo docker work
+# left in as a reference
+  # jenkins:
+  #   image: jenkinsci/blueocean
+  #   user: root
+  #   volumes:
+  #     - '~/.jenkins:/var/jenkins_home'
+  #     - '/var/run/docker.sock:/var/run/docker.sock'
+  #   ports:
+  #     - '8080:8080'
+  #     - '50000:50000'
+
+  # anchore-engine:
+  #   image: docker.io/anchore/anchore-engine:latest
+  #   #privileged: true
+  #   depends_on:
+  #    - anchore-db
+  #   ports:
+  #    - "8228:8228"
+  #    - "8338:8338"
+  #   volumes:
+  #    - ~/.aevolume/config:/config/:z
+  #   logging:
+  #    driver: "json-file"
+  #    options:
+  #     max-size: 100m
+  #   environment:
+  #    # NOTE: this should be set to the same name as this service (e.g. anchore-engine)
+  #    - ANCHORE_HOST_ID=dockerhostid-anchore-engine
+  #    - ANCHORE_ENDPOINT_HOSTNAME=anchore-engine
+  # anchore-db:
+  #   image: "postgres:9"
+  #   volumes:
+  #    - ~/.aevolume/db:/var/lib/postgresql/data/pgdata/:z
+  #   environment:
+  #     - POSTGRES_PASSWORD=mysecretpassword
+  #     - PGDATA=/var/lib/postgresql/data/pgdata/
+  #   logging:
+  #    driver: "json-file"
+  #    options:
+  #     max-size: 100m
+    #uncomment to expose a port to allow direct/external access to the DB, for debugging
+    #ports:
+    # - "2345:5432"
