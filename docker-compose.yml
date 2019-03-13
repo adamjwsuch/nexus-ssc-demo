@@ -21,7 +21,7 @@ services:
       - '~/.fortify_home:/usr/local/tomcat/fortify'
 
   iq-server:
-    image: 'cmyanko/my-iq-server:1.60.0'
+    image: 'cmyanko/my-iq-server:1.62.0'
     build: ./iq-server
     volumes:
       - '~/iq-data:/sonatype-work'
@@ -74,35 +74,47 @@ services:
   #     - '8080:8080'
   #     - '50000:50000'
 
-  # anchore-engine:
-  #   image: docker.io/anchore/anchore-engine:latest
-  #   #privileged: true
-  #   depends_on:
-  #    - anchore-db
-  #   ports:
-  #    - "8228:8228"
-  #    - "8338:8338"
-  #   volumes:
-  #    - ~/.aevolume/config:/config/:z
-  #   logging:
-  #    driver: "json-file"
-  #    options:
-  #     max-size: 100m
-  #   environment:
-  #    # NOTE: this should be set to the same name as this service (e.g. anchore-engine)
-  #    - ANCHORE_HOST_ID=dockerhostid-anchore-engine
-  #    - ANCHORE_ENDPOINT_HOSTNAME=anchore-engine
-  # anchore-db:
-  #   image: "postgres:9"
-  #   volumes:
-  #    - ~/.aevolume/db:/var/lib/postgresql/data/pgdata/:z
-  #   environment:
-  #     - POSTGRES_PASSWORD=mysecretpassword
-  #     - PGDATA=/var/lib/postgresql/data/pgdata/
-  #   logging:
-  #    driver: "json-file"
-  #    options:
-  #     max-size: 100m
+  anchore-engine:
+    image: docker.io/anchore/anchore-engine:latest
+    #privileged: true
+    depends_on:
+     - anchore-db
+    ports:
+     - "8228:8228"
+     - "8338:8338"
+    volumes:
+     - ~/.aevolume/config:/config/:z
+    logging:
+     driver: "json-file"
+     options:
+      max-size: 100m
+    environment:
+     # NOTE: this should be set to the same name as this service (e.g. anchore-engine)
+     - ANCHORE_HOST_ID=dockerhostid-anchore-engine
+     - ANCHORE_ENDPOINT_HOSTNAME=anchore-engine
+  anchore-db:
+    image: "postgres:9"
+    volumes:
+     - ~/.aevolume/db:/var/lib/postgresql/data/pgdata/:z
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - PGDATA=/var/lib/postgresql/data/pgdata/
+    logging:
+     driver: "json-file"
+     options:
+      max-size: 100m
     #uncomment to expose a port to allow direct/external access to the DB, for debugging
     #ports:
     # - "2345:5432"
+  # victoria:
+  #   image: 'victoria:1.0.0-44'
+  #   build: ./victoria
+  #   volumes:
+  #     - '~/.victoria/db:/home/nexus/db'
+  #     - '~/.victoria/log:/home/nexus/log'
+  #     - '~/.victoria/tmp:/home/nexus/tmp'
+  #   ports:
+  #     - '8090:8090'
+  #     - '8091:8091'
+  #   depends_on:
+  #     - iq-server
